@@ -5,51 +5,51 @@ const prisma = new PrismaClient();
 
 const products = [
   {
-    name: "Gau Bong Sieu Mem",
-    description: "Chu gau bong long mem mai, ban dong hanh dang yeu cho be.",
+    name: "Gấu Bông Siêu Mềm",
+    description: "Chú gấu bông lông mềm mại, bạn đồng hành đáng yêu cho bé.",
     price: 149000,
     imageUrl: "https://images.unsplash.com/photo-1562040506-a9b32cb51b94?w=600",
-    category: "Do choi",
+    category: "Đồ chơi",
     stock: 40,
   },
   {
-    name: "Bo Xep Hinh Khung Long",
-    description: "Bo lego 120 manh lap hinh khung long ba dau day mau sac.",
+    name: "Bộ Xếp Hình Khủng Long",
+    description: "Bộ lego 120 mảnh lắp hình khủng long ba đầu đầy màu sắc.",
     price: 259000,
     imageUrl: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600",
-    category: "Do choi",
+    category: "Đồ chơi",
     stock: 30,
   },
   {
-    name: "Bong Da Mini Ngoi Sao",
-    description: "Qua bong nhua deo, size nho gon cho be choi trong nha.",
+    name: "Bóng Đá Mini Ngôi Sao",
+    description: "Quả bóng nhựa dẻo, size nhỏ gọn cho bé chơi trong nhà.",
     price: 89000,
     imageUrl: "https://images.unsplash.com/photo-1614632537197-38a17061c2bd?w=600",
-    category: "The thao",
+    category: "Thể thao",
     stock: 60,
   },
   {
-    name: "Bo But Chi Mau 24 Cay",
-    description: "But chi mau sap khong doc hai, 24 mau sac ruc ro.",
+    name: "Bộ Bút Chì Màu 24 Cây",
+    description: "Bút chì màu sáp không độc hại, 24 màu sắc rực rỡ.",
     price: 65000,
     imageUrl: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600",
-    category: "Hoc tap",
+    category: "Học tập",
     stock: 100,
   },
   {
-    name: "Balo Hinh Khung Long Cute",
-    description: "Balo di hoc chong tham nuoc, hoa tiet khung long ngo nghinh.",
+    name: "Balo Hình Khủng Long Cute",
+    description: "Balo đi học chống thấm nước, hoạ tiết khủng long ngộ nghĩnh.",
     price: 189000,
     imageUrl: "https://images.unsplash.com/photo-1622560480605-d83c853bc935?w=600",
-    category: "Thoi trang",
+    category: "Thời trang",
     stock: 25,
   },
   {
-    name: "Xe Dua Dieu Khien Tu Xa",
-    description: "Xe do choi dieu khien tu xa toc do cao, pin sac tien loi.",
+    name: "Xe Đua Điều Khiển Từ Xa",
+    description: "Xe đồ chơi điều khiển từ xa tốc độ cao, pin sạc tiện lợi.",
     price: 349000,
     imageUrl: "https://images.unsplash.com/photo-1594787317612-e5b0a5f6e5f5?w=600",
-    category: "Do choi",
+    category: "Đồ chơi",
     stock: 15,
   },
 ];
@@ -60,9 +60,9 @@ async function main() {
   const productCount = await prisma.product.count();
   if (productCount === 0) {
     await prisma.product.createMany({ data: products });
-    console.log(`Da them ${products.length} san pham mau.`);
+    console.log(`Đã thêm ${products.length} sản phẩm mẫu.`);
   } else {
-    console.log("Da co san pham trong DB, bo qua seed san pham.");
+    console.log("Đã có sản phẩm trong DB, bỏ qua seed sản phẩm.");
   }
 
   const username = process.env.ADMIN_DEFAULT_USERNAME || "admin";
@@ -71,9 +71,9 @@ async function main() {
   if (!existingAdmin) {
     const passwordHash = await bcrypt.hash(password, 10);
     await prisma.admin.create({ data: { username, passwordHash } });
-    console.log(`Da tao tai khoan admin: ${username} / ${password}`);
+    console.log(`Đã tạo tài khoản admin: ${username} / ${password}`);
   } else {
-    console.log("Tai khoan admin da ton tai, bo qua.");
+    console.log("Tài khoản admin đã tồn tại, bỏ qua.");
   }
 
   console.log("Seed xong!");

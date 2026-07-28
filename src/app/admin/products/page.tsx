@@ -20,7 +20,7 @@ const emptyForm = {
   description: "",
   price: 0,
   imageUrl: "",
-  category: "Do choi",
+  category: "Đồ chơi",
   stock: 50,
   isActive: true,
 };
@@ -82,7 +82,7 @@ export default function AdminProductsPage() {
 
     if (!res.ok) {
       const data = await res.json();
-      setError(typeof data.error === "string" ? data.error : "Co loi xay ra");
+      setError(typeof data.error === "string" ? data.error : "Có lỗi xảy ra");
       return;
     }
 
@@ -91,7 +91,7 @@ export default function AdminProductsPage() {
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("Xoa san pham nay? Hanh dong khong the hoan tac.")) return;
+    if (!confirm("Xóa sản phẩm này? Hành động không thể hoàn tác.")) return;
     await fetch(`/api/products/${id}`, { method: "DELETE" });
     loadProducts();
   }
@@ -108,19 +108,19 @@ export default function AdminProductsPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl font-extrabold text-ink">San pham 🧸</h1>
+        <h1 className="font-display text-3xl font-extrabold text-ink">Sản phẩm 🧸</h1>
         <button
           onClick={openCreateForm}
           className="btn-chunky bg-bubblegum px-5 py-2.5 text-white hover:bg-bubblegum-dark"
         >
-          + Them san pham
+          + Thêm sản phẩm
         </button>
       </div>
 
       {loading ? (
-        <p className="mt-8 text-center text-ink/50">Dang tai...</p>
+        <p className="mt-8 text-center text-ink/50">Đang tải...</p>
       ) : products.length === 0 ? (
-        <p className="mt-8 text-center text-ink/50">Chua co san pham nao.</p>
+        <p className="mt-8 text-center text-ink/50">Chưa có sản phẩm nào.</p>
       ) : (
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
@@ -147,19 +147,19 @@ export default function AdminProductsPage() {
                     p.isActive ? "bg-grass-light text-grass-dark" : "bg-ink/10 text-ink/50"
                   }`}
                 >
-                  {p.isActive ? "Dang ban" : "Da an"}
+                  {p.isActive ? "Đang bán" : "Đã ẩn"}
                 </button>
                 <button
                   onClick={() => openEditForm(p)}
                   className="ml-auto rounded-full px-3 py-1 text-xs font-bold text-lagoon-dark hover:bg-lagoon-light"
                 >
-                  Sua
+                  Sửa
                 </button>
                 <button
                   onClick={() => handleDelete(p.id)}
                   className="rounded-full px-3 py-1 text-xs font-bold text-bubblegum-dark hover:bg-bubblegum-light"
                 >
-                  Xoa
+                  Xóa
                 </button>
               </div>
             </div>
@@ -171,18 +171,18 @@ export default function AdminProductsPage() {
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-ink/40 p-4">
           <div className="card-sticker max-h-[90vh] w-full max-w-lg overflow-y-auto p-6">
             <h2 className="font-display text-xl font-bold text-ink">
-              {editingId ? "Sua san pham" : "Them san pham moi"}
+              {editingId ? "Sửa sản phẩm" : "Thêm sản phẩm mới"}
             </h2>
             <form onSubmit={handleSubmit} className="mt-4 space-y-3">
               <input
                 required
-                placeholder="Ten san pham"
+                placeholder="Tên sản phẩm"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="input-field"
               />
               <textarea
-                placeholder="Mo ta"
+                placeholder="Mô tả"
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 className="input-field"
@@ -193,7 +193,7 @@ export default function AdminProductsPage() {
                   required
                   type="number"
                   min={0}
-                  placeholder="Gia (VND)"
+                  placeholder="Giá (VND)"
                   value={form.price}
                   onChange={(e) => setForm({ ...form, price: Number(e.target.value) })}
                   className="input-field"
@@ -202,20 +202,20 @@ export default function AdminProductsPage() {
                   required
                   type="number"
                   min={0}
-                  placeholder="Ton kho"
+                  placeholder="Tồn kho"
                   value={form.stock}
                   onChange={(e) => setForm({ ...form, stock: Number(e.target.value) })}
                   className="input-field"
                 />
               </div>
               <input
-                placeholder="Danh muc (vd: Do choi)"
+                placeholder="Danh mục (vd: Đồ chơi)"
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
                 className="input-field"
               />
               <input
-                placeholder="URL hinh anh"
+                placeholder="URL hình ảnh"
                 value={form.imageUrl}
                 onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
                 className="input-field"
@@ -233,13 +233,13 @@ export default function AdminProductsPage() {
                   onClick={() => setShowForm(false)}
                   className="btn-chunky flex-1 bg-cream text-ink hover:bg-ink/10"
                 >
-                  Huy
+                  Hủy
                 </button>
                 <button
                   type="submit"
                   className="btn-chunky flex-1 bg-grass text-white hover:bg-grass-dark"
                 >
-                  Luu
+                  Lưu
                 </button>
               </div>
             </form>

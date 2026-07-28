@@ -11,10 +11,10 @@ export default function OrderProgress({ status }: { status: OrderStatusKey }) {
         <span className="text-3xl">❌</span>
         <div>
           <p className="font-display text-lg font-bold text-bubblegum-dark">
-            Don hang da bi huy
+            Đơn hàng đã bị hủy
           </p>
           <p className="text-sm text-ink/60">
-            Lien he cua hang neu ban can ho tro them.
+            Liên hệ cửa hàng nếu bạn cần hỗ trợ thêm.
           </p>
         </div>
       </div>

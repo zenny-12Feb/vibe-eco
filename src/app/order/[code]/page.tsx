@@ -24,14 +24,14 @@ export default async function OrderStatusPage({
       <div className="mx-auto max-w-lg px-4 py-20 text-center sm:px-6">
         <p className="text-6xl">🔍</p>
         <h1 className="mt-4 font-display text-2xl font-extrabold text-ink">
-          Khong tim thay don hang "{params.code}"
+          Không tìm thấy đơn hàng "{params.code}"
         </h1>
-        <p className="mt-2 text-ink/60">Ban kiem tra lai ma don hang nhe.</p>
+        <p className="mt-2 text-ink/60">Bạn kiểm tra lại mã đơn hàng nhé.</p>
         <Link
           href="/order/lookup"
           className="btn-chunky mt-6 inline-flex bg-lagoon px-6 py-3 text-white hover:bg-lagoon-dark"
         >
-          Tra cuu lai
+          Tra cứu lại
         </Link>
       </div>
     );
@@ -45,10 +45,10 @@ export default async function OrderStatusPage({
       <div className="text-center">
         <p className="text-5xl">🎉</p>
         <h1 className="mt-2 font-display text-2xl font-extrabold text-ink sm:text-3xl">
-          Cam on ban da dat hang!
+          Cảm ơn bạn đã đặt hàng!
         </h1>
         <p className="mt-1 text-ink/60">
-          Ma don hang cua ban:{" "}
+          Mã đơn hàng của bạn:{" "}
           <span className="font-display text-lg font-extrabold text-bubblegum">{order.code}</span>
         </p>
         <div className="mt-3">
@@ -66,7 +66,7 @@ export default async function OrderStatusPage({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={qrUrl}
-              alt="Ma QR thanh toan VietQR"
+              alt="Mã QR thanh toán VietQR"
               width={220}
               height={220}
               className="h-auto w-full"
@@ -74,24 +74,24 @@ export default async function OrderStatusPage({
           </div>
           <div>
             <h2 className="font-display text-lg font-bold text-ink">
-              📱 Quet ma QR de thanh toan
+              📱 Quét mã QR để thanh toán
             </h2>
             <p className="mt-1 text-sm text-ink/60">
-              Mo app ngan hang bat ky, quet ma QR, so tien va noi dung se tu dien san.
+              Mở app ngân hàng bất kỳ, quét mã QR, số tiền và nội dung sẽ tự điền sẵn.
             </p>
             <ul className="mt-3 space-y-1 text-sm">
               <li>
-                <span className="font-bold text-ink/50">Chu tai khoan:</span> {bank.accountName}
+                <span className="font-bold text-ink/50">Chủ tài khoản:</span> {bank.accountName}
               </li>
               <li>
-                <span className="font-bold text-ink/50">So tai khoan:</span> {bank.accountNo}
+                <span className="font-bold text-ink/50">Số tài khoản:</span> {bank.accountNo}
               </li>
               <li>
-                <span className="font-bold text-ink/50">So tien:</span>{" "}
+                <span className="font-bold text-ink/50">Số tiền:</span>{" "}
                 <span className="font-extrabold text-bubblegum">{formatVnd(order.totalAmount)}</span>
               </li>
               <li>
-                <span className="font-bold text-ink/50">Noi dung:</span> Thanh toan don {order.code}
+                <span className="font-bold text-ink/50">Nội dung:</span> Thanh toán đơn {order.code}
               </li>
             </ul>
           </div>
@@ -99,7 +99,7 @@ export default async function OrderStatusPage({
       )}
 
       <div className="card-sticker mt-8 p-6">
-        <h2 className="font-display text-lg font-bold text-ink">Chi tiet don hang</h2>
+        <h2 className="font-display text-lg font-bold text-ink">Chi tiết đơn hàng</h2>
         <ul className="mt-3 divide-y-2 divide-dashed divide-cream">
           {order.items.map((item) => (
             <li key={item.id} className="flex justify-between py-2 text-sm">
@@ -111,7 +111,7 @@ export default async function OrderStatusPage({
           ))}
         </ul>
         <div className="mt-3 flex justify-between border-t-2 border-cream pt-3">
-          <span className="font-bold text-ink/60">Tong cong</span>
+          <span className="font-bold text-ink/60">Tổng cộng</span>
           <span className="font-display text-xl font-extrabold text-bubblegum">
             {formatVnd(order.totalAmount)}
           </span>
@@ -120,7 +120,7 @@ export default async function OrderStatusPage({
 
       <div className="mt-6 text-center">
         <Link href="/" className="font-bold text-ink/50 hover:text-bubblegum">
-          ← Tiep tuc mua sam
+          ← Tiếp tục mua sắm
         </Link>
       </div>
     </div>

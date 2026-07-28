@@ -22,7 +22,7 @@ export default function AdminLoginPage() {
     const data = await res.json();
     setLoading(false);
     if (!res.ok) {
-      setError(data.error || "Dang nhap that bai");
+      setError(data.error || "Đăng nhập thất bại");
       return;
     }
     router.push("/admin");
@@ -35,9 +35,9 @@ export default function AdminLoginPage() {
         <div className="text-center">
           <span className="text-5xl">🔐</span>
           <h1 className="mt-3 font-display text-2xl font-extrabold text-ink">
-            Dang nhap Quan tri
+            Đăng nhập Quản trị
           </h1>
-          <p className="mt-1 text-sm text-ink/60">Vibe Eco Admin Panel</p>
+          <p className="mt-1 text-sm text-ink/60">Bộp Admin Panel</p>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Ten dang nhap"
+            placeholder="Tên đăng nhập"
             className="input-field"
             autoFocus
           />
@@ -54,7 +54,7 @@ export default function AdminLoginPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Mat khau"
+            placeholder="Mật khẩu"
             className="input-field"
           />
 
@@ -69,7 +69,7 @@ export default function AdminLoginPage() {
             disabled={loading}
             className="btn-chunky w-full bg-berry py-3 text-white hover:bg-berry-dark disabled:opacity-50"
           >
-            {loading ? "Dang xu ly..." : "Dang nhap"}
+            {loading ? "Đang xử lý..." : "Đăng nhập"}
           </button>
         </form>
       </div>

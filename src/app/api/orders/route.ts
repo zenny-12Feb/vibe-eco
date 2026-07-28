@@ -8,7 +8,7 @@ import { generateOrderCode } from "@/lib/order-code";
 export async function GET(request: NextRequest) {
   const admin = await getCurrentAdmin();
   if (!admin) {
-    return NextResponse.json({ error: "Khong co quyen truy cap" }, { status: 401 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 401 });
   }
 
   const status = request.nextUrl.searchParams.get("status");
@@ -23,8 +23,8 @@ export async function GET(request: NextRequest) {
 }
 
 const createOrderSchema = z.object({
-  customerName: z.string().min(1, "Vui long nhap ten"),
-  customerPhone: z.string().min(8, "So dien thoai khong hop le"),
+  customerName: z.string().min(1, "Vui lòng nhập tên"),
+  customerPhone: z.string().min(8, "Số điện thoại không hợp lệ"),
   customerAddress: z.string().default(""),
   note: z.string().default(""),
   items: z
@@ -34,7 +34,7 @@ const createOrderSchema = z.object({
         quantity: z.number().int().positive(),
       })
     )
-    .min(1, "Gio hang dang trong"),
+    .min(1, "Giỏ hàng đang trống"),
 });
 
 // POST /api/orders - tao don hang moi (khach - guest)
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
   if (products.length !== productIds.length) {
     return NextResponse.json(
-      { error: "Mot so san pham khong con ton tai hoac da ngung ban" },
+      { error: "Một số sản phẩm không còn tồn tại hoặc đã ngừng bán" },
       { status: 400 }
     );
   }
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     const product = products.find((p) => p.id === item.productId)!;
     if (product.stock < item.quantity) {
       return NextResponse.json(
-        { error: `San pham "${product.name}" khong du hang (con ${product.stock})` },
+        { error: `Sản phẩm "${product.name}" không đủ hàng (còn ${product.stock})` },
         { status: 400 }
       );
     }
@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (!order) {
-    return NextResponse.json({ error: "Khong the tao don hang, vui long thu lai" }, { status: 500 });
+    return NextResponse.json({ error: "Không thể tạo đơn hàng, vui lòng thử lại" }, { status: 500 });
   }
 
   return NextResponse.json({ order }, { status: 201 });

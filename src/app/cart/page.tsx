@@ -14,14 +14,14 @@ export default function CartPage() {
       <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
         <p className="text-6xl">🛒</p>
         <h1 className="mt-4 font-display text-2xl font-extrabold text-ink">
-          Gio hang dang trong nhi!
+          Giỏ hàng đang trống nhỉ!
         </h1>
-        <p className="mt-2 text-ink/60">Hay chon vai mon do that thich nhe.</p>
+        <p className="mt-2 text-ink/60">Hãy chọn vài món đồ thật thích nhé.</p>
         <Link
           href="/"
           className="btn-chunky mt-6 inline-flex bg-bubblegum px-6 py-3 text-white hover:bg-bubblegum-dark"
         >
-          Kham pha ngay 🎈
+          Khám phá ngay 🎈
         </Link>
       </div>
     );
@@ -29,7 +29,7 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-      <h1 className="font-display text-3xl font-extrabold text-ink">🛒 Gio hang cua ban</h1>
+      <h1 className="font-display text-3xl font-extrabold text-ink">🛒 Giỏ hàng của bạn</h1>
 
       <div className="mt-6 space-y-4">
         {items.map((item) => (
@@ -50,7 +50,7 @@ export default function CartPage() {
 
               <button
                 onClick={() => removeItem(item.productId)}
-                aria-label={`Xoa ${item.name}`}
+                aria-label={`Xóa ${item.name}`}
                 className="shrink-0 rounded-full p-2 text-xl text-ink/30 transition hover:bg-bubblegum-light hover:text-bubblegum-dark sm:hidden"
               >
                 🗑️
@@ -70,7 +70,7 @@ export default function CartPage() {
 
               <button
                 onClick={() => removeItem(item.productId)}
-                aria-label={`Xoa ${item.name}`}
+                aria-label={`Xóa ${item.name}`}
                 className="hidden shrink-0 rounded-full p-2 text-xl text-ink/30 transition hover:bg-bubblegum-light hover:text-bubblegum-dark sm:block"
               >
                 🗑️
@@ -82,7 +82,7 @@ export default function CartPage() {
 
       <div className="card-sticker mt-8 flex flex-col items-center justify-between gap-4 p-6 sm:flex-row">
         <div>
-          <p className="text-sm font-bold text-ink/50">Tong cong</p>
+          <p className="text-sm font-bold text-ink/50">Tổng cộng</p>
           <p className="font-display text-3xl font-extrabold text-bubblegum">
             {formatVnd(totalAmount)}
           </p>
@@ -91,7 +91,7 @@ export default function CartPage() {
           href="/checkout"
           className="btn-chunky w-full bg-grass px-8 py-3 text-lg text-white hover:bg-grass-dark sm:w-auto"
         >
-          Thanh toan ngay 💳
+          Thanh toán ngay 💳
         </Link>
       </div>
     </div>

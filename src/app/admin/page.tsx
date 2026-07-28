@@ -21,11 +21,11 @@ export default async function AdminDashboardPage() {
   });
 
   const stats = [
-    { label: "San pham", value: productCount, emoji: "🧸", color: "bg-sunshine-light text-sunshine-dark" },
-    { label: "Tong don hang", value: orderCount, emoji: "📦", color: "bg-lagoon-light text-lagoon-dark" },
-    { label: "Cho thanh toan", value: pendingCount, emoji: "💳", color: "bg-bubblegum-light text-bubblegum-dark" },
+    { label: "Sản phẩm", value: productCount, emoji: "🧸", color: "bg-sunshine-light text-sunshine-dark" },
+    { label: "Tổng đơn hàng", value: orderCount, emoji: "📦", color: "bg-lagoon-light text-lagoon-dark" },
+    { label: "Chờ thanh toán", value: pendingCount, emoji: "💳", color: "bg-bubblegum-light text-bubblegum-dark" },
     {
-      label: "Doanh thu (da xac nhan)",
+      label: "Doanh thu (đã xác nhận)",
       value: formatVnd(revenueAgg._sum.totalAmount || 0),
       emoji: "💰",
       color: "bg-grass-light text-grass-dark",
@@ -34,8 +34,8 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="font-display text-3xl font-extrabold text-ink">Xin chao, Admin! 👋</h1>
-      <p className="mt-1 text-ink/60">Tong quan cua hang Vibe Eco.</p>
+      <h1 className="font-display text-3xl font-extrabold text-ink">Xin chào, Admin! 👋</h1>
+      <p className="mt-1 text-ink/60">Tổng quan cửa hàng Bộp.</p>
 
       <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {stats.map((s) => (
@@ -51,23 +51,23 @@ export default async function AdminDashboardPage() {
 
       <div className="card-sticker mt-8 p-6">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-lg font-bold text-ink">Don hang gan day</h2>
+          <h2 className="font-display text-lg font-bold text-ink">Đơn hàng gần đây</h2>
           <Link href="/admin/orders" className="text-sm font-bold text-lagoon-dark hover:underline">
-            Xem tat ca →
+            Xem tất cả →
           </Link>
         </div>
 
         {recentOrders.length === 0 ? (
-          <p className="mt-4 text-sm text-ink/50">Chua co don hang nao.</p>
+          <p className="mt-4 text-sm text-ink/50">Chưa có đơn hàng nào.</p>
         ) : (
           <div className="mt-4 overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="text-ink/40">
-                  <th className="pb-2">Ma don</th>
-                  <th className="pb-2">Khach hang</th>
-                  <th className="pb-2">Tong tien</th>
-                  <th className="pb-2">Trang thai</th>
+                  <th className="pb-2">Mã đơn</th>
+                  <th className="pb-2">Khách hàng</th>
+                  <th className="pb-2">Tổng tiền</th>
+                  <th className="pb-2">Trạng thái</th>
                 </tr>
               </thead>
               <tbody>

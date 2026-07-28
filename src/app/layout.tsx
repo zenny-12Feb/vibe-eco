@@ -17,8 +17,8 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Vibe Eco - Cua hang vui nhon",
-  description: "Website ban hang don gian, than thien voi mau sac tuoi vui.",
+  title: "Bộp - Cửa hàng vui nhộn",
+  description: "Website bán hàng đơn giản, thân thiện với màu sắc tươi vui.",
 };
 
 export default function RootLayout({

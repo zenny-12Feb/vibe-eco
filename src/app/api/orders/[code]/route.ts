@@ -14,7 +14,7 @@ export async function GET(
   });
 
   if (!order) {
-    return NextResponse.json({ error: "Khong tim thay don hang" }, { status: 404 });
+    return NextResponse.json({ error: "Không tìm thấy đơn hàng" }, { status: 404 });
   }
 
   return NextResponse.json({ order });
@@ -38,7 +38,7 @@ export async function PATCH(
 ) {
   const admin = await getCurrentAdmin();
   if (!admin) {
-    return NextResponse.json({ error: "Khong co quyen truy cap" }, { status: 401 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 401 });
   }
 
   const json = await request.json();
@@ -55,6 +55,6 @@ export async function PATCH(
     });
     return NextResponse.json({ order });
   } catch {
-    return NextResponse.json({ error: "Khong tim thay don hang" }, { status: 404 });
+    return NextResponse.json({ error: "Không tìm thấy đơn hàng" }, { status: 404 });
   }
 }

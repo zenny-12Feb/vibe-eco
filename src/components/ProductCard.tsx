@@ -44,7 +44,7 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
     >
       {product.stock <= 0 && (
         <span className="absolute left-5 top-5 z-10 rounded-full bg-ink px-3 py-1 text-xs font-bold text-white">
-          Het hang
+          Hết hàng
         </span>
       )}
       <Link href={`/product/${product.id}`} className="block overflow-hidden rounded-[1.5rem]">
@@ -81,8 +81,8 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           onClick={handleQuickAdd}
           disabled={product.stock <= 0}
           className="btn-chunky h-10 w-10 shrink-0 bg-grass text-lg text-white shadow-chunky-sm hover:bg-grass-dark disabled:cursor-not-allowed disabled:opacity-40"
-          aria-label={`Them ${product.name} vao gio`}
-          title="Them vao gio"
+          aria-label={`Thêm ${product.name} vào giỏ`}
+          title="Thêm vào giỏ"
         >
           {justAdded ? "✅" : "+"}
         </button>

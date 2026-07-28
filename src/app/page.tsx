@@ -20,10 +20,10 @@ export default async function HomePage() {
       <section className="relative mx-auto max-w-6xl px-4 pb-8 pt-14 text-center sm:px-6">
         <span className="inline-block animate-float text-6xl">🎈🧸🚀</span>
         <h1 className="mt-4 font-display text-4xl font-extrabold text-ink sm:text-5xl">
-          Cua hang <span className="text-bubblegum">vui nhon</span> cho be!
+          Cửa hàng <span className="text-bubblegum">vui nhộn</span> cho bé!
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-lg text-ink/70">
-          Chon mon do yeu thich, them vao gio, thanh toan that nhanh bang QR nhe!
+          Chọn món đồ yêu thích, thêm vào giỏ, thanh toán thật nhanh bằng QR nhé!
         </p>
       </section>
 
@@ -45,10 +45,10 @@ export default async function HomePage() {
           <div className="card-sticker mx-auto max-w-md p-10 text-center">
             <p className="text-5xl">📭</p>
             <p className="mt-3 font-display text-lg font-bold text-ink">
-              Chua co san pham nao ca!
+              Chưa có sản phẩm nào cả!
             </p>
             <p className="mt-1 text-sm text-ink/60">
-              Vao trang Admin de them san pham dau tien nhe.
+              Vào trang Admin để thêm sản phẩm đầu tiên nhé.
             </p>
           </div>
         ) : (

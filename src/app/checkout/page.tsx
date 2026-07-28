@@ -23,13 +23,13 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
         <p className="text-6xl">🧾</p>
         <h1 className="mt-4 font-display text-2xl font-extrabold text-ink">
-          Ban chua co san pham nao de thanh toan!
+          Bạn chưa có sản phẩm nào để thanh toán!
         </h1>
         <Link
           href="/"
           className="btn-chunky mt-6 inline-flex bg-bubblegum px-6 py-3 text-white hover:bg-bubblegum-dark"
         >
-          Ve trang chu
+          Về trang chủ
         </Link>
       </div>
     );
@@ -40,7 +40,7 @@ export default function CheckoutPage() {
     setError("");
 
     if (!form.customerName.trim() || !form.customerPhone.trim()) {
-      setError("Vui long nhap day du ho ten va so dien thoai nhe.");
+      setError("Vui lòng nhập đầy đủ họ tên và số điện thoại nhé.");
       return;
     }
 
@@ -56,34 +56,34 @@ export default function CheckoutPage() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || "Co loi xay ra, vui long thu lai.");
+        setError(data.error || "Có lỗi xảy ra, vui lòng thử lại.");
         setSubmitting(false);
         return;
       }
       clearCart();
       router.push(`/order/${data.order.code}`);
     } catch {
-      setError("Khong the ket noi may chu, vui long thu lai.");
+      setError("Không thể kết nối máy chủ, vui lòng thử lại.");
       setSubmitting(false);
     }
   }
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-      <h1 className="font-display text-3xl font-extrabold text-ink">Thong tin giao hang 🚚</h1>
+      <h1 className="font-display text-3xl font-extrabold text-ink">Thông tin giao hàng 🚚</h1>
 
       <div className="mt-6 grid gap-8 sm:grid-cols-5">
         <form onSubmit={handleSubmit} className="card-sticker space-y-4 p-6 sm:col-span-3">
-          <Field label="Ho va ten *">
+          <Field label="Họ và tên *">
             <input
               required
               value={form.customerName}
               onChange={(e) => setForm({ ...form, customerName: e.target.value })}
               className="input-field"
-              placeholder="Nguyen Van A"
+              placeholder="Nguyễn Văn A"
             />
           </Field>
-          <Field label="So dien thoai *">
+          <Field label="Số điện thoại *">
             <input
               required
               value={form.customerPhone}
@@ -92,21 +92,21 @@ export default function CheckoutPage() {
               placeholder="0901234567"
             />
           </Field>
-          <Field label="Dia chi nhan hang">
+          <Field label="Địa chỉ nhận hàng">
             <input
               value={form.customerAddress}
               onChange={(e) => setForm({ ...form, customerAddress: e.target.value })}
               className="input-field"
-              placeholder="So nha, duong, phuong/xa, tinh/thanh"
+              placeholder="Số nhà, đường, phường/xã, tỉnh/thành"
             />
           </Field>
-          <Field label="Ghi chu">
+          <Field label="Ghi chú">
             <textarea
               value={form.note}
               onChange={(e) => setForm({ ...form, note: e.target.value })}
               className="input-field"
               rows={3}
-              placeholder="Vi du: giao gio hanh chinh..."
+              placeholder="Ví dụ: giao giờ hành chính..."
             />
           </Field>
 
@@ -121,12 +121,12 @@ export default function CheckoutPage() {
             disabled={submitting}
             className="btn-chunky w-full bg-bubblegum py-3 text-lg text-white hover:bg-bubblegum-dark disabled:opacity-50"
           >
-            {submitting ? "Dang tao don..." : "Tao don & Lay ma QR ✨"}
+            {submitting ? "Đang tạo đơn..." : "Tạo đơn & Lấy mã QR ✨"}
           </button>
         </form>
 
         <div className="card-sticker h-fit p-6 sm:col-span-2">
-          <h2 className="font-display text-lg font-bold text-ink">Don hang cua ban</h2>
+          <h2 className="font-display text-lg font-bold text-ink">Đơn hàng của bạn</h2>
           <ul className="mt-3 space-y-2">
             {items.map((i) => (
               <li key={i.productId} className="flex justify-between text-sm">
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
             ))}
           </ul>
           <div className="mt-4 flex justify-between border-t-2 border-dashed border-cream pt-4">
-            <span className="font-bold text-ink/60">Tong cong</span>
+            <span className="font-bold text-ink/60">Tổng cộng</span>
             <span className="font-display text-xl font-extrabold text-bubblegum">
               {formatVnd(totalAmount)}
             </span>

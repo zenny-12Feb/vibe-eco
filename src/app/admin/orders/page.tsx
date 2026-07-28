@@ -69,10 +69,10 @@ export default function AdminOrdersPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="font-display text-3xl font-extrabold text-ink">Don hang 📦</h1>
+      <h1 className="font-display text-3xl font-extrabold text-ink">Đơn hàng 📦</h1>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <FilterChip label="Tat ca" active={filter === ""} onClick={() => setFilter("")} />
+        <FilterChip label="Tất cả" active={filter === ""} onClick={() => setFilter("")} />
         {STATUS_OPTIONS.map((s) => (
           <FilterChip
             key={s}
@@ -84,9 +84,9 @@ export default function AdminOrdersPage() {
       </div>
 
       {loading ? (
-        <p className="mt-8 text-center text-ink/50">Dang tai...</p>
+        <p className="mt-8 text-center text-ink/50">Đang tải...</p>
       ) : orders.length === 0 ? (
-        <p className="mt-8 text-center text-ink/50">Khong co don hang nao.</p>
+        <p className="mt-8 text-center text-ink/50">Không có đơn hàng nào.</p>
       ) : (
         <div className="mt-6 space-y-3">
           {orders.map((o) => (
@@ -138,12 +138,12 @@ export default function AdminOrdersPage() {
                 <div className="mt-4 border-t-2 border-dashed border-cream pt-4">
                   {o.customerAddress && (
                     <p className="text-sm text-ink/70">
-                      <span className="font-bold text-ink/50">Dia chi:</span> {o.customerAddress}
+                      <span className="font-bold text-ink/50">Địa chỉ:</span> {o.customerAddress}
                     </p>
                   )}
                   {o.note && (
                     <p className="mt-1 text-sm text-ink/70">
-                      <span className="font-bold text-ink/50">Ghi chu:</span> {o.note}
+                      <span className="font-bold text-ink/50">Ghi chú:</span> {o.note}
                     </p>
                   )}
                   <ul className="mt-2 space-y-1">

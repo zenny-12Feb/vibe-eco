@@ -9,7 +9,7 @@ export function buildVietQrUrl(params: {
 }): string {
   const bankId = process.env.VIETQR_BANK_ID || "970436";
   const accountNo = process.env.VIETQR_ACCOUNT_NO || "0000000000";
-  const accountName = process.env.VIETQR_ACCOUNT_NAME || "VIBE ECO";
+  const accountName = process.env.VIETQR_ACCOUNT_NAME || "BOP";
   const template = process.env.VIETQR_TEMPLATE || "compact2";
 
   const addInfo = encodeURIComponent(`Thanh toan don ${params.orderCode}`);
@@ -22,6 +22,6 @@ export function getBankAccountInfo() {
   return {
     bankId: process.env.VIETQR_BANK_ID || "970436",
     accountNo: process.env.VIETQR_ACCOUNT_NO || "0000000000",
-    accountName: process.env.VIETQR_ACCOUNT_NAME || "VIBE ECO",
+    accountName: process.env.VIETQR_ACCOUNT_NAME || "BOP",
   };
 }

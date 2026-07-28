@@ -9,7 +9,7 @@ export async function GET(
 ) {
   const product = await prisma.product.findUnique({ where: { id: params.id } });
   if (!product) {
-    return NextResponse.json({ error: "Khong tim thay san pham" }, { status: 404 });
+    return NextResponse.json({ error: "Không tìm thấy sản phẩm" }, { status: 404 });
   }
   return NextResponse.json({ product });
 }
@@ -30,7 +30,7 @@ export async function PATCH(
 ) {
   const admin = await getCurrentAdmin();
   if (!admin) {
-    return NextResponse.json({ error: "Khong co quyen truy cap" }, { status: 401 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 401 });
   }
 
   const json = await request.json();
@@ -46,7 +46,7 @@ export async function PATCH(
     });
     return NextResponse.json({ product });
   } catch {
-    return NextResponse.json({ error: "Khong tim thay san pham" }, { status: 404 });
+    return NextResponse.json({ error: "Không tìm thấy sản phẩm" }, { status: 404 });
   }
 }
 
@@ -56,13 +56,13 @@ export async function DELETE(
 ) {
   const admin = await getCurrentAdmin();
   if (!admin) {
-    return NextResponse.json({ error: "Khong co quyen truy cap" }, { status: 401 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 401 });
   }
 
   try {
     await prisma.product.delete({ where: { id: params.id } });
     return NextResponse.json({ ok: true });
   } catch {
-    return NextResponse.json({ error: "Khong tim thay san pham" }, { status: 404 });
+    return NextResponse.json({ error: "Không tìm thấy sản phẩm" }, { status: 404 });
   }
 }

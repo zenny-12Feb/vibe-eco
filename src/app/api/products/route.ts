@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   if (all) {
     const admin = await getCurrentAdmin();
     if (!admin) {
-      return NextResponse.json({ error: "Khong co quyen truy cap" }, { status: 401 });
+      return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 401 });
     }
     const products = await prisma.product.findMany({ orderBy: { createdAt: "desc" } });
     return NextResponse.json({ products });
@@ -29,7 +29,7 @@ const createProductSchema = z.object({
   description: z.string().default(""),
   price: z.number().int().nonnegative(),
   imageUrl: z.string().default(""),
-  category: z.string().default("Khac"),
+  category: z.string().default("Khác"),
   stock: z.number().int().nonnegative().default(100),
   isActive: z.boolean().default(true),
 });
@@ -38,7 +38,7 @@ const createProductSchema = z.object({
 export async function POST(request: NextRequest) {
   const admin = await getCurrentAdmin();
   if (!admin) {
-    return NextResponse.json({ error: "Khong co quyen truy cap" }, { status: 401 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 401 });
   }
 
   const json = await request.json();

@@ -45,14 +45,14 @@ export default function ProductDetailActions({ product }: { product: Product }) 
   return (
     <div className="space-y-5">
       <div>
-        <p className="text-sm font-bold text-ink/50">So luong (con {product.stock} san pham)</p>
+        <p className="text-sm font-bold text-ink/50">Số lượng (còn {product.stock} sản phẩm)</p>
         <div className="mt-2">
           <QuantityStepper value={quantity} onChange={setQuantity} max={product.stock || 1} />
         </div>
       </div>
 
       <div className="rounded-2xl bg-sunshine-light p-4">
-        <p className="text-sm font-bold text-ink/60">Tam tinh</p>
+        <p className="text-sm font-bold text-ink/60">Tạm tính</p>
         <p className="font-display text-2xl font-extrabold text-ink">
           {formatVnd(product.price * quantity)}
         </p>
@@ -64,7 +64,7 @@ export default function ProductDetailActions({ product }: { product: Product }) 
           disabled={isOutOfStock}
           className="btn-chunky flex-1 bg-lagoon px-6 py-3 text-white hover:bg-lagoon-dark disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {added ? "✅ Da them vao gio!" : "🛒 Them vao gio"}
+          {added ? "✅ Đã thêm vào giỏ!" : "🛒 Thêm vào giỏ"}
         </button>
         <button
           onClick={handleBuyNow}
@@ -75,7 +75,7 @@ export default function ProductDetailActions({ product }: { product: Product }) 
         </button>
       </div>
       {isOutOfStock && (
-        <p className="text-center font-bold text-bubblegum-dark">San pham tam het hang 😢</p>
+        <p className="text-center font-bold text-bubblegum-dark">Sản phẩm tạm hết hàng 😢</p>
       )}
     </div>
   );

@@ -21,7 +21,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:h-20 sm:flex-nowrap sm:py-0 sm:px-6">
         <Link href={isAdmin ? "/admin" : "/"} className="flex flex-wrap items-center gap-2 font-display text-2xl font-extrabold text-bubblegum">
           <span className="inline-block animate-wobble">🛍️</span>
-          Vibe Eco
+          Bộp
           {isAdmin && (
             <span className="ml-1 rounded-full bg-berry-light px-3 py-1 text-xs font-bold text-berry-dark">
               ADMIN
@@ -32,24 +32,25 @@ export default function Navbar() {
         {isAdmin ? (
           <nav className="flex flex-wrap items-center justify-end gap-1 sm:flex-nowrap sm:gap-2">
             <NavLink href="/admin">Dashboard</NavLink>
-            <NavLink href="/admin/products">San pham</NavLink>
-            <NavLink href="/admin/orders">Don hang</NavLink>
+            <NavLink href="/admin/products">Sản phẩm</NavLink>
+            <NavLink href="/admin/orders">Đơn hàng</NavLink>
+            <NavLink href="/admin/pricing">Định giá</NavLink>
             <button
               onClick={handleLogout}
               className="btn-chunky bg-bubblegum px-4 py-2.5 text-sm text-white shadow-chunky-sm hover:bg-bubblegum-dark sm:py-2"
             >
-              Dang xuat
+              Đăng xuất
             </button>
           </nav>
         ) : (
           <nav className="flex flex-wrap items-center justify-end gap-1 sm:flex-nowrap sm:gap-4">
-            <NavLink href="/">Trang chu</NavLink>
-            <NavLink href="/order/lookup">Tra cuu don</NavLink>
+            <NavLink href="/">Trang chủ</NavLink>
+            <NavLink href="/order/lookup">Tra cứu đơn</NavLink>
             <Link
               href="/cart"
               className="btn-chunky relative bg-sunshine px-4 py-2.5 text-sm text-ink shadow-chunky-sm hover:bg-sunshine-dark sm:py-2"
             >
-              🛒 Gio hang
+              🛒 Giỏ hàng
               {totalItems > 0 && (
                 <span className="absolute -right-2 -top-2 flex h-6 w-6 animate-pop items-center justify-center rounded-full bg-bubblegum text-xs font-bold text-white">
                   {totalItems}
