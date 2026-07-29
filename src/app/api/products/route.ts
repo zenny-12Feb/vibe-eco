@@ -28,9 +28,11 @@ const createProductSchema = z.object({
   name: z.string().min(1),
   description: z.string().default(""),
   price: z.number().int().nonnegative(),
+  costPrice: z.number().int().nonnegative().default(0),
   imageUrl: z.string().default(""),
   category: z.string().default("Khác"),
   stock: z.number().int().nonnegative().default(100),
+  itemsPerBlock: z.number().int().positive().default(1),
   isActive: z.boolean().default(true),
 });
 

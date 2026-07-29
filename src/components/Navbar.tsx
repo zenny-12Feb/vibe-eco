@@ -34,7 +34,7 @@ export default function Navbar() {
             <NavLink href="/admin">Dashboard</NavLink>
             <NavLink href="/admin/products">Sản phẩm</NavLink>
             <NavLink href="/admin/orders">Đơn hàng</NavLink>
-            <NavLink href="/admin/pricing">Định giá</NavLink>
+            <NavLink href="/admin/pricing">Cấu hình giá</NavLink>
             <button
               onClick={handleLogout}
               className="btn-chunky bg-bubblegum px-4 py-2.5 text-sm text-white shadow-chunky-sm hover:bg-bubblegum-dark sm:py-2"

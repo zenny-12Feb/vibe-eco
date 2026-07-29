@@ -20,10 +20,12 @@ model Product {
   id          String   @id @default(uuid())
   name        String
   description String   @default("")
-  price       Int // VND, so nguyen
+  price       Int // VND, gia ban/item, so nguyen
+  costPrice   Int      @default(0) // VND, gia von/block
   imageUrl    String   @default("")
   category    String   @default("Khac")
-  stock       Int      @default(100)
+  stock       Int      @default(100) // so luong block/goi con trong kho
+  itemsPerBlock Int    @default(1) // so luong item trong moi block/goi
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

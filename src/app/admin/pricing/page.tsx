@@ -12,6 +12,9 @@ type Product = {
   id: string;
   name: string;
   price: number;
+  costPrice: number;
+  stock: number;
+  itemsPerBlock: number;
 };
 
 type Row = {
@@ -28,9 +31,10 @@ function rowFromProduct(product: Product): Row {
   return {
     id: crypto.randomUUID(),
     productId: product.id,
-    packageQuantity: 1,
-    itemsPerPackage: 1,
-    packageCost: 0,
+    // So luong goi, so luong item/goi va gia von luon lay theo du lieu ben san pham, khong cho nhap tay
+    packageQuantity: product.stock ?? 0,
+    itemsPerPackage: product.itemsPerBlock ?? 1,
+    packageCost: product.costPrice ?? 0,
     marginPercent: null,
     savedPrice: product.price,
   };
@@ -81,9 +85,9 @@ export default function AdminPricingPage() {
     const product = products.find((p) => p.id === row.productId);
     if (!product) return;
     updateRow(row.id, {
-      packageQuantity: 1,
-      itemsPerPackage: 1,
-      packageCost: 0,
+      packageQuantity: product.stock ?? 0,
+      itemsPerPackage: product.itemsPerBlock ?? 1,
+      packageCost: product.costPrice ?? 0,
       marginPercent: null,
       savedPrice: product.price,
     });
@@ -121,9 +125,9 @@ export default function AdminPricingPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="font-display text-3xl font-extrabold text-ink">Định giá nguồn hàng 🧮</h1>
+      <h1 className="font-display text-3xl font-extrabold text-ink">Cấu hình giá 🧮</h1>
       <p className="mt-1 text-sm text-ink/60">
-        Tính giá vốn từ gói hàng, tự động tính giá bán/item theo biên lợi nhuận mong muốn và lưu giá bán vào sản phẩm.
+        Số lượng gói, số lượng item/gói và giá vốn được lấy tự động từ sản phẩm. Chỉ cần nhập biên lợi nhuận mong muốn để tính giá bán/item và lưu vào sản phẩm.
       </p>
 
       <div className="card-sticker mt-6 p-4">
@@ -184,33 +188,21 @@ export default function AdminPricingPage() {
                     </div>
                   </td>
                   <td className="py-2 pr-3 align-top">
-                    <input
-                      type="number"
-                      min={0}
-                      value={row.packageQuantity}
-                      onChange={(e) => updateRow(row.id, { packageQuantity: Number(e.target.value) || 0 })}
-                      className="input-field"
-                    />
+                    <div className="input-field bg-cream/40 font-bold text-ink">
+                      {row.packageQuantity.toLocaleString("vi-VN")}
+                    </div>
+                    <p className="mt-1 text-xs text-ink/40">Theo tồn kho hiện có</p>
                   </td>
                   <td className="py-2 pr-3 align-top">
-                    <input
-                      type="number"
-                      min={0}
-                      value={row.itemsPerPackage}
-                      onChange={(e) => updateRow(row.id, { itemsPerPackage: Number(e.target.value) || 0 })}
-                      className="input-field"
-                    />
+                    <div className="input-field bg-cream/40 font-bold text-ink">
+                      {row.itemsPerPackage.toLocaleString("vi-VN")}
+                    </div>
                     <p className="mt-1 text-xs text-ink/40">Tổng {items.toLocaleString("vi-VN")} item</p>
                   </td>
                   <td className="py-2 pr-3 align-top">
-                    <input
-                      type="number"
-                      min={0}
-                      placeholder="Giá cả gói"
-                      value={row.packageCost}
-                      onChange={(e) => updateRow(row.id, { packageCost: Number(e.target.value) || 0 })}
-                      className="input-field"
-                    />
+                    <div className="input-field bg-cream/40 font-bold text-ink">
+                      {formatVnd(row.packageCost)}
+                    </div>
                     <p className="mt-1 text-xs text-ink/40">≈ {formatVnd(Math.round(cost))}/item</p>
                   </td>
                   <td className="py-2 pr-3 align-top">
